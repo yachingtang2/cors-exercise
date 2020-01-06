@@ -38,4 +38,11 @@ class GreetingControllerTest {
         .andExpect(status().isOk())
         .andExpect(content().json("{\"id\": 1, \"content\": \"Hello, Han!\"}"));
   }
+
+  @Test
+  void greetingHasTwoRequestParams() throws Exception {
+    mvc.perform(MockMvcRequestBuilders.get("/greeting?name=dog&nickName=cat"))
+      .andExpect(status().isOk())
+      .andExpect(content().json("{\"id\": 1, \"content\": \"Hello, dog! cat\"}"));
+  }
 }
